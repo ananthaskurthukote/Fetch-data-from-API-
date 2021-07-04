@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Task</title>
+	<link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</head>
+<style>
+
+#imgTag{
+width:400px;
+height:400px;
+}
+#pt {
+  font-family: "Lucida Handwriting";
+}
+
+</style>
+<body>
+<div class="container" id="pt">
+	<h1> This is the detailed view page </h1>
+		
+	</div>
+	<br>
+<div id="content">
+	
+<div class="container" id="id01" >
+	
+	<div class="row" id="cardDiv" >
+		
+	</div>
+	
+</div>
+</div>
+
+   
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Full Detail Modal</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+	  <div class="modal-body">
+        <form>
+		</form>
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+var conn=0;
+var div=document.getElementById("id01");
+
+var staticUrl='https://reqres.in/api/users'
+
+$.getJSON(staticUrl, function(data){
+
+console.log(data.data[0].avatar)
+
+
+for(let index=0; index<data.data.length; index++){
+			div.innerHTML+=`
+			<form style="border: 2px solid black">
+          <div class="form-group" id="${data.data[index].id}">
+		  <a type="button" class="btn btn-primary"  href="index.html" data-whatever="@mdo">Click here for home page</a>
+		  <div class="form-group" >
+		  
+            <label for="recipient-name" class="col-form-label">image:</label>
+            <img class="card-img-top" id="imgTag" src="${data.data[index].avatar}" value="" >
+					  <a class="num" style="color:red;background:yellow; " href='index.html#${data.data[index].avatar}'>${data.data[index].id}</a>
+
+          </div>
+            <label for="recipient-name" class="col-form-label">First Name:</label>
+            <input type="text" class="form-control" id="recipient-name" value="${data.data[index].first_name}">
+          </div>
+         <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Last Name:</label>
+            <input type="text" name="last_name" class="form-control" id="last_name" value="${data.data[index].last_name}">
+          </div>
+		  <div class="form-group">
+            <label for="email" class="col-form-label">Email:</label>
+            <input type="text" class="form-control" id="email" value="${data.data[index].email}">
+			
+
+          </div>
+        </form>
+		
+<br>				`
+			conn=conn+1;
+		}
+	})
+
+	.catch((error)=>{
+		console.log(error);
+	})
+
+
+
+</script>
+  </body>
+ 
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</html>
